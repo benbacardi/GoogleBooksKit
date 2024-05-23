@@ -31,13 +31,18 @@ struct GoogleBooksErrorResponse: Codable, LocalizedError {
 
 struct GoogleBooksSearchQuery: StringKeyValueConvertible {
     let q: String
+    var startIndex: Int?
+    var maxResults: Int?
     let key: String
     
     public func keyValues() -> [KeyValuePair<String>] {
-        return [
+        var keyValues = [
             ("q", q),
             ("key", key),
         ]
+        if let startIndex { keyValues.append(("startIndex", "\(startIndex)")) }
+        if let maxResults { keyValues.append(("maxResults", "\(maxResults)")) }
+        return keyValues
     }
 }
 

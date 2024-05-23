@@ -24,9 +24,9 @@ public class GoogleBooks {
         self.apiKey = apiKey
     }
     
-    public func search(_ searchTerm: String) async -> GoogleBooksVolumeResponse? {
+    public func search(_ searchTerm: String, startIndex: Int = 0, maxResults: Int = 20) async -> GoogleBooksVolumeResponse? {
         do {
-            return try await client.make(request: GoogleBooksRequests.searchVolumesRequest(), queries: GoogleBooksSearchQuery(q: searchTerm, key: self.apiKey)).data
+            return try await client.make(request: GoogleBooksRequests.searchVolumesRequest(), queries: GoogleBooksSearchQuery(q: searchTerm, startIndex: startIndex, maxResults: maxResults, key: self.apiKey)).data
         } catch let error as GoogleBooksAPIError {
             switch error {
             case .responseError(let olError, meta: let meta, underlyingError: let underlying):
