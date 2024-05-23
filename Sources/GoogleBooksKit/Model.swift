@@ -62,7 +62,7 @@ extension GoogleBooks {
         
         public struct VolumeInfo: Codable {
             public let title: String
-            public let authors: [String]
+            public let authors: [String]?
             public let publisher: String?
             public let publishedDate: String?
             public let description: String?
