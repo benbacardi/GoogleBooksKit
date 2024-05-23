@@ -21,15 +21,15 @@ extension GoogleBooks {
     }
     
     enum Requests {
-        static func searchVolumesRequest() -> AdvancedRequest<Nothing, [String: String], GoogleBooksSearchQuery, GoogleBooksVolumeResponse, GoogleBooksErrorResponse> {
+        static func searchVolumesRequest() -> AdvancedRequest<Nothing, [String: String], SearchQuery, VolumeResponse, ErrorResponse> {
             Constants.baseGroup.request(path: "volumes")
         }
     }
     
-    public typealias APIError = APIClientError<GoogleBooksErrorResponse>
+    public typealias APIError = APIClientError<ErrorResponse>
  
-    public func search(_ searchTerm: String, startIndex: Int = 0, maxResults: Int = 20) async throws -> GoogleBooksVolumeResponse {
-        return try await client.make(request: Requests.searchVolumesRequest(), queries: GoogleBooksSearchQuery(q: searchTerm, startIndex: startIndex, maxResults: maxResults, key: self.apiKey)).data
+    public func search(_ searchTerm: String, startIndex: Int = 0, maxResults: Int = 20) async throws -> VolumeResponse {
+        return try await client.make(request: Requests.searchVolumesRequest(), queries: SearchQuery(q: searchTerm, startIndex: startIndex, maxResults: maxResults, key: self.apiKey)).data
     }
     
 }
