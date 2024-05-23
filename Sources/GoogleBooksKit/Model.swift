@@ -10,21 +10,21 @@ import APIClient
 
 // MARK: Errors
 
-struct GoogleBooksError: Codable {
-    let message: String
-    let domain: String
-    let reason: String
+public struct GoogleBooksError: Codable {
+    public let message: String
+    public let domain: String
+    public let reason: String
 }
 
-struct GoogleBooksErrorWrapper: Codable {
-    let code: Int
-    let message: String
-    let errors: [GoogleBooksError]
+public struct GoogleBooksErrorWrapper: Codable {
+    public let code: Int
+    public let message: String
+    public let errors: [GoogleBooksError]
 }
 
-struct GoogleBooksErrorResponse: Codable, LocalizedError {
-    let error: GoogleBooksErrorWrapper
-    var errorDescription: String { error.message }
+public struct GoogleBooksErrorResponse: Codable, LocalizedError {
+    public let error: GoogleBooksErrorWrapper
+    public var errorDescription: String { error.message }
 }
 
 // MARK: Queries
