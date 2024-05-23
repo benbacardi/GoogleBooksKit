@@ -5,17 +5,24 @@ import PackageDescription
 
 let package = Package(
     name: "GoogleBooksKit",
+    platforms: [
+        .macOS(.v10_15),
+        .iOS(.v17),
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "GoogleBooksKit",
             targets: ["GoogleBooksKit"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/koshakji/APIClient", from: "0.0.8"),
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "GoogleBooksKit"),
+            name: "GoogleBooksKit", dependencies: [.product(name: "APIClient", package: "APIClient")]),
         .testTarget(
             name: "GoogleBooksKitTests",
             dependencies: ["GoogleBooksKit"]),
